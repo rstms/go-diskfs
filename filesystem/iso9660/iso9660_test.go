@@ -13,8 +13,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/diskfs/go-diskfs/filesystem"
-	"github.com/diskfs/go-diskfs/filesystem/iso9660"
+	"github.com/cusspvz/go-diskfs/filesystem"
+	"github.com/cusspvz/go-diskfs/filesystem/iso9660"
 )
 
 func getOpenMode(mode int) string {

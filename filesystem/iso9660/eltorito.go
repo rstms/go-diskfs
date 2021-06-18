@@ -6,8 +6,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/diskfs/go-diskfs/partition/mbr"
-	"github.com/diskfs/go-diskfs/util"
+	"github.com/cusspvz/go-diskfs/partition/mbr"
+	"github.com/cusspvz/go-diskfs/util"
 )
 
 const (

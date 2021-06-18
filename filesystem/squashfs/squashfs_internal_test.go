@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/diskfs/go-diskfs/filesystem"
-	"github.com/diskfs/go-diskfs/testhelper"
+	"github.com/cusspvz/go-diskfs/filesystem"
+	"github.com/cusspvz/go-diskfs/testhelper"
 )
 
 func TestWorkspace(t *testing.T) {
@@ -205,16 +205,16 @@ func TestReadDirectory(t *testing.T) {
 		t.Fatalf("error getting valid test filesystem: %v", err)
 	}
 
-	tests := []struct{
-		p string
-		err error
+	tests := []struct {
+		p       string
+		err     error
 		entries []*directoryEntry
 	}{
 		{"/a/b/c", nil, []*directoryEntry{
 			{
 				isSubdirectory: true,
-				name: "d",
-				size: 5,
+				name:           "d",
+				size:           5,
 			},
 		}},
 	}

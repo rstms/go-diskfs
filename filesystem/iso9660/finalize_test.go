@@ -11,10 +11,10 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/diskfs/go-diskfs/filesystem"
-	"github.com/diskfs/go-diskfs/filesystem/iso9660"
-	"github.com/diskfs/go-diskfs/partition/mbr"
-	"github.com/diskfs/go-diskfs/testhelper"
+	"github.com/cusspvz/go-diskfs/filesystem"
+	"github.com/cusspvz/go-diskfs/filesystem/iso9660"
+	"github.com/cusspvz/go-diskfs/partition/mbr"
+	"github.com/cusspvz/go-diskfs/testhelper"
 )
 
 var (

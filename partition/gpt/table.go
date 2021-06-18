@@ -7,8 +7,8 @@ import (
 	"hash/crc32"
 	"strings"
 
-	"github.com/diskfs/go-diskfs/partition/part"
-	"github.com/diskfs/go-diskfs/util"
+	"github.com/cusspvz/go-diskfs/partition/part"
+	"github.com/cusspvz/go-diskfs/util"
 	uuid "github.com/google/uuid"
 )
 

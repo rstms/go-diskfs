@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/diskfs/go-diskfs/testhelper"
+	"github.com/cusspvz/go-diskfs/testhelper"
 )
 
 var (
