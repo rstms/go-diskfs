@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/cusspvz/go-diskfs/filesystem/iso9660"
+	"github.com/rstms/go-diskfs/filesystem/iso9660"
 )
 
 func TestFileRead(t *testing.T) {

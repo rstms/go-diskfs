@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cusspvz/go-diskfs/util"
+	"github.com/rstms/go-diskfs/util"
 )
 
 const (

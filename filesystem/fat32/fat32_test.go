@@ -15,10 +15,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cusspvz/go-diskfs/filesystem"
-	"github.com/cusspvz/go-diskfs/filesystem/fat32"
-	"github.com/cusspvz/go-diskfs/testhelper"
-	"github.com/cusspvz/go-diskfs/util"
+	"github.com/rstms/go-diskfs/filesystem"
+	"github.com/rstms/go-diskfs/filesystem/fat32"
+	"github.com/rstms/go-diskfs/testhelper"
+	"github.com/rstms/go-diskfs/util"
 )
 
 var (

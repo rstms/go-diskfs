@@ -7,8 +7,8 @@ import (
 	"os"
 	"path"
 
-	"github.com/cusspvz/go-diskfs/filesystem"
-	"github.com/cusspvz/go-diskfs/util"
+	"github.com/rstms/go-diskfs/filesystem"
+	"github.com/rstms/go-diskfs/util"
 )
 
 const (

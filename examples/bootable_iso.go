@@ -5,10 +5,10 @@ import (
 	"log"
 	"os"
 
-	diskfs "github.com/cusspvz/go-diskfs"
-	"github.com/cusspvz/go-diskfs/disk"
-	"github.com/cusspvz/go-diskfs/filesystem"
-	"github.com/cusspvz/go-diskfs/filesystem/iso9660"
+	diskfs "github.com/rstms/go-diskfs"
+	"github.com/rstms/go-diskfs/disk"
+	"github.com/rstms/go-diskfs/filesystem"
+	"github.com/rstms/go-diskfs/filesystem/iso9660"
 )
 
 func CreateBootableIso(diskImg string) {

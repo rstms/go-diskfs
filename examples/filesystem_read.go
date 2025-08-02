@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 
-	diskfs "github.com/cusspvz/go-diskfs"
+	diskfs "github.com/rstms/go-diskfs"
 )
 
 func ReadFilesystem(p string) {

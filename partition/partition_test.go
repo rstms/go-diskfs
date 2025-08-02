@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cusspvz/go-diskfs/partition"
+	"github.com/rstms/go-diskfs/partition"
 )
 
 func TestRead(t *testing.T) {

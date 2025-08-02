@@ -14,11 +14,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cusspvz/go-diskfs/disk"
-	"github.com/cusspvz/go-diskfs/filesystem"
-	"github.com/cusspvz/go-diskfs/partition"
-	"github.com/cusspvz/go-diskfs/partition/gpt"
-	"github.com/cusspvz/go-diskfs/partition/mbr"
+	"github.com/rstms/go-diskfs/disk"
+	"github.com/rstms/go-diskfs/filesystem"
+	"github.com/rstms/go-diskfs/partition"
+	"github.com/rstms/go-diskfs/partition/gpt"
+	"github.com/rstms/go-diskfs/partition/mbr"
 )
 
 var (

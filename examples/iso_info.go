@@ -6,9 +6,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/cusspvz/go-diskfs"
-	"github.com/cusspvz/go-diskfs/filesystem"
-	"github.com/cusspvz/go-diskfs/filesystem/iso9660"
+	"github.com/rstms/go-diskfs"
+	"github.com/rstms/go-diskfs/filesystem"
+	"github.com/rstms/go-diskfs/filesystem/iso9660"
 )
 
 func PrintIsoInfo(isoPath string) {

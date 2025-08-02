@@ -12,11 +12,11 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/cusspvz/go-diskfs/filesystem"
-	"github.com/cusspvz/go-diskfs/filesystem/fat32"
-	"github.com/cusspvz/go-diskfs/filesystem/iso9660"
-	"github.com/cusspvz/go-diskfs/filesystem/squashfs"
-	"github.com/cusspvz/go-diskfs/partition"
+	"github.com/rstms/go-diskfs/filesystem"
+	"github.com/rstms/go-diskfs/filesystem/fat32"
+	"github.com/rstms/go-diskfs/filesystem/iso9660"
+	"github.com/rstms/go-diskfs/filesystem/squashfs"
+	"github.com/rstms/go-diskfs/partition"
 )
 
 // Disk is a reference to a single disk block device or image that has been Create() or Open()

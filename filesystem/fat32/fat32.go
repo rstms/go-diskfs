@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cusspvz/go-diskfs/filesystem"
-	"github.com/cusspvz/go-diskfs/util"
+	"github.com/rstms/go-diskfs/filesystem"
+	"github.com/rstms/go-diskfs/util"
 )
 
 // MsdosMediaType is the (mostly unused) media type. However, we provide and export the known constants for it.
