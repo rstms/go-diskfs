@@ -7,9 +7,9 @@ import (
 	"hash/crc32"
 	"strings"
 
+	uuid "github.com/google/uuid"
 	"github.com/rstms/go-diskfs/partition/part"
 	"github.com/rstms/go-diskfs/util"
-	uuid "github.com/google/uuid"
 )
 
 // gptSize max potential size for partition array reserved 16384

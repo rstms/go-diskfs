@@ -610,20 +610,20 @@ func readFragmentTable(s *superblock, file util.File, c Compressor) ([]*fragment
 }
 
 /*
-	How the xattr table is laid out
-	It has three components in the following order
-	1- xattr metadata
-	2- xattr id table
-	3- xattr index
+How the xattr table is laid out
+It has three components in the following order
+1- xattr metadata
+2- xattr id table
+3- xattr index
 
-	To read the xattr table:
-	1- Get the start of the index from the superblock
-	2- read the index header, which contains: metadata start; id count
-	3- Calculate how many bytes of index data there are: (id count)*(index size)
-	4- Calculate how many meta blocks of index data there are, as each block is 8K uncompressed
-	5- Read the indexes immediately following the header. They are uncompressed, 8 bytes each (uint64); one index per id metablock
-	6- Read the id metablocks based on the indexes and uncompress if needed
-	7- Read all of the xattr metadata. It starts at the location indicated by the header, and ends at the id table
+To read the xattr table:
+1- Get the start of the index from the superblock
+2- read the index header, which contains: metadata start; id count
+3- Calculate how many bytes of index data there are: (id count)*(index size)
+4- Calculate how many meta blocks of index data there are, as each block is 8K uncompressed
+5- Read the indexes immediately following the header. They are uncompressed, 8 bytes each (uint64); one index per id metablock
+6- Read the id metablocks based on the indexes and uncompress if needed
+7- Read all of the xattr metadata. It starts at the location indicated by the header, and ends at the id table
 */
 func readXattrsTable(s *superblock, file util.File, c Compressor) (*xAttrTable, error) {
 	// first read the header
@@ -714,17 +714,17 @@ func parseXattrsTable(bUIDXattr, bIndex []byte, offset uint64, c Compressor) (*x
 }
 
 /*
-	How the uids/gids table is laid out
-	It has two components in the following order
-	1- list of uids/gids in order, each uint32. These are in metadata blocks of uncompressed 8K size
-	2- list of indexes to metadata blocks
+How the uids/gids table is laid out
+It has two components in the following order
+1- list of uids/gids in order, each uint32. These are in metadata blocks of uncompressed 8K size
+2- list of indexes to metadata blocks
 
-	To read the uids/gids table:
-	1- Get the start of the index from the superblock
-	2- Calculate how many bytes of ids there are: (id count)*(id size), where (id size) = 4 bytes (uint32)
-	3- Calculate how many meta blocks of id data there are, as each block is 8K uncompressed
-	4- Read the indexes. They are uncompressed, 8 bytes each (uint64); one index per id metablock
-	5- Read the id metablocks based on the indexes and uncompress if needed
+To read the uids/gids table:
+1- Get the start of the index from the superblock
+2- Calculate how many bytes of ids there are: (id count)*(id size), where (id size) = 4 bytes (uint32)
+3- Calculate how many meta blocks of id data there are, as each block is 8K uncompressed
+4- Read the indexes. They are uncompressed, 8 bytes each (uint64); one index per id metablock
+5- Read the id metablocks based on the indexes and uncompress if needed
 */
 func readUidsGids(s *superblock, file util.File, c Compressor) ([]uint32, error) {
 	// find out how many xattr IDs we have and where the metadata starts. The table always starts

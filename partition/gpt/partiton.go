@@ -8,8 +8,8 @@ import (
 	"strings"
 	"unicode/utf16"
 
-	"github.com/rstms/go-diskfs/util"
 	uuid "github.com/google/uuid"
+	"github.com/rstms/go-diskfs/util"
 )
 
 // PartitionEntrySize fixed size of a GPT partition entry

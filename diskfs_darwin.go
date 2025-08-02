@@ -1,4 +1,4 @@
-// +build darwin linux solaris aix freebsd illumos netbsd openbsd plan9
+//go:build darwin
 
 package diskfs
 

@@ -1,78 +1,53 @@
-.PHONY: test image unit_test
+# go makefile
 
-PACKAGE_NAME?=github.com/cusspvz/go-diskfs
-IMAGE ?= diskfs/go-diskfs:build
-GOENV ?= GO111MODULE=on CGO_ENABLED=0
-GO_FILES ?= $(shell $(GOENV) go list ./...)
-GOBIN ?= $(shell go env GOPATH)/bin
-LINTER ?= $(GOBIN)/golangci-lint
+program != basename $$(pwd)
+go_version = go1.24.5
+version != cat VERSION
+latest_release != gh release list --json tagName --jq '.[0].tagName' | tr -d v
+gitclean = $(if $(shell git status --porcelain),$(error git status is dirty),$(info git status is clean))
+rstms_modules = $(shell awk <go.mod '/^module/{next} /rstms/{print $$1}')
+$(program): build
 
+build: fmt
+	fix go build
 
-# BUILDARCH is the host architecture
-# ARCH is the target architecture
-# we need to keep track of them separately
-BUILDARCH ?= $(shell uname -m)
-BUILDOS ?= $(shell uname -s | tr A-Z a-z)
+fmt: go.sum
+	fix go fmt . ./...
 
-# canonicalized names for host architecture
-ifeq ($(BUILDARCH),aarch64)
-BUILDARCH=arm64
-endif
-ifeq ($(BUILDARCH),x86_64)
-BUILDARCH=amd64
-endif
+go.mod:
+	$(go_version) mod init
 
-# unless otherwise set, I am building for my own architecture, i.e. not cross-compiling
-# and for my OS
-ARCH ?= $(BUILDARCH)
-OS ?= $(BUILDOS)
+go.sum: go.mod
+	go mod tidy
 
-# canonicalized names for target architecture
-ifeq ($(ARCH),aarch64)
-        override ARCH=arm64
-endif
-ifeq ($(ARCH),x86_64)
-    override ARCH=amd64
-endif
+install: build
+	go install
 
-BUILD_CMD = CGO_ENABLED=0 GOOS=$(OS) GOARCH=$(ARCH)
-ifdef DOCKERBUILD
-BUILD_CMD = docker run --rm \
-                -e GOARCH=$(ARCH) \
-                -e GOOS=linux \
-                -e CGO_ENABLED=0 \
-                -v $(CURDIR):/go/src/$(PACKAGE_NAME) \
-                -w /go/src/$(PACKAGE_NAME) \
-                $(BUILDER_IMAGE)
-endif
+test: fmt
+	go test -v -failfast . ./...
 
-image:
-	docker build -t $(IMAGE) testhelper/docker
+debug: fmt
+	go test -v -failfast -count=1 -run $(test) . ./...
 
-# because we keep making the same typo
-unit-test: unit_test
-unit_test:
-	@$(GOENV) go test $(GO_FILES)
+release:
+	$(gitclean)
+	@$(if $(update),gh release delete -y v$(version),)
+	gh release create v$(version) --notes "v$(version)"
 
-test: image
-	TEST_IMAGE=$(IMAGE) $(GOENV) go test $(GO_FILES)
+update:
+	@echo updating modules
+	@$(foreach module,$(rstms_modules),go get $(module)@latest;)
 
-golangci-lint: $(LINTER)
-$(LINTER):
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GOBIN) v1.41.0
+logclean: 
+	echo >/var/log/boxen
 
+clean: logclean
+	rm -f $(program) *.core 
+	go clean
 
-## Check the file format
-fmt-check:
-	@if [ -n "$(shell $(BUILD_CMD) gofmt -l ${GO_FILES})" ]; then \
-	  $(BUILD_CMD) gofmt -s -e -d ${GO_FILES}; \
-	  exit 1; \
-	fi
-
-## Lint the files
-lint: golangci-lint
-	@$(BUILD_CMD) $(LINTER) run --disable-all --enable=revive ./...
-
-## Vet the files
-vet:
-	@$(BUILD_CMD) go vet ${GO_FILES}
+sterile: clean
+	which $(program) && go clean -i || true
+	go clean
+	go clean -cache
+	go clean -modcache
+	rm -f go.mod go.sum

@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/rstms/go-diskfs/util"
 	"github.com/pkg/xattr"
+	"github.com/rstms/go-diskfs/util"
 )
 
 type fileType uint8

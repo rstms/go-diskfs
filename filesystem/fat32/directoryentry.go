@@ -436,8 +436,9 @@ func calculateSlots(s string) int {
 
 // convert LFN to short name
 // returns shortName, extension, isLFN, isTruncated
-//   isLFN : was there an LFN that had to be converted
-//   isTruncated : was the shortname longer than 8 chars and had to be converted?
+//
+//	isLFN : was there an LFN that had to be converted
+//	isTruncated : was the shortname longer than 8 chars and had to be converted?
 func convertLfnSfn(name string) (string, string, bool, bool) {
 	isLFN, isTruncated := false, false
 	// get last period in name
